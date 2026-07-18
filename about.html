@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | 群青の書</title>
+<meta name="description" content="群青の書について、運営者について、リンクとお問い合わせ。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#0a1128;
+    --bg-primary:#12204f;
+    --bg-secondary:#1a2c63;
+    --bg-card:#1e3272;
+    --gold:#c9a227;
+    --gold-bright:#e8c468;
+    --gold-dim:rgba(201,162,39,0.35);
+    --text-primary:#ede6d3;
+    --text-muted:#9aa3c9;
+    --text-faint:#6d78a3;
+    --line:rgba(201,162,39,0.22);
+    --error:#c06070;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-void);
+    color:var(--text-primary);
+    font-family:'Noto Serif JP','Shippori Mincho',serif;
+    line-height:1.9;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  /* --- ヘッダー --- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,17,40,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;
+  }
+  .brand{
+    font-family:'Cinzel',serif;font-size:1.25rem;letter-spacing:0.12em;
+    color:var(--gold-bright);display:flex;align-items:center;gap:10px;
+  }
+  .brand .kanji{
+    font-family:'Shippori Mincho',serif;color:var(--text-primary);
+    font-size:1.05rem;letter-spacing:0.06em;
+  }
+  nav ul{list-style:none;display:flex;gap:2.2rem;}
+  nav a{
+    font-size:0.92rem;letter-spacing:0.08em;color:var(--text-muted);
+    position:relative;padding:4px 0;transition:color .3s;
+  }
+  nav a::after{
+    content:'';position:absolute;left:0;bottom:-4px;
+    width:0;height:1px;background:var(--gold);transition:width .35s ease;
+  }
+  nav a:hover, nav a.active{color:var(--gold-bright);}
+  nav a:hover::after, nav a.active::after{width:100%;}
+  .menu-btn{display:none;background:none;border:1px solid var(--gold-dim);color:var(--gold-bright);
+    width:40px;height:40px;border-radius:2px;font-size:1.2rem;cursor:pointer;}
+
+  @media (max-width:760px){
+    nav ul{
+      position:fixed;top:0;right:-100%;width:70%;height:100vh;
+      background:var(--bg-primary);flex-direction:column;
+      padding:100px 32px;gap:1.8rem;transition:right .4s ease;
+      border-left:1px solid var(--line);
+    }
+    nav ul.open{right:0;}
+    .menu-btn{display:block;}
+  }
+
+  /* --- ページヘッダー --- */
+  .page-head{
+    padding:100px 24px 60px;text-align:center;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(201,162,39,0.08), transparent 55%),
+      linear-gradient(180deg, var(--bg-void) 0%, var(--bg-primary) 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'EB Garamond',serif;font-style:italic;color:var(--gold);
+    letter-spacing:0.2em;font-size:0.82rem;text-transform:uppercase;margin-bottom:0.9rem;
+  }
+  .page-head h1{
+    font-family:'Shippori Mincho',serif;font-size:clamp(2rem,5vw,2.8rem);
+    font-weight:600;letter-spacing:0.06em;color:var(--gold-bright);
+  }
+  .page-head p{color:var(--text-muted);max-width:520px;margin:1.2rem auto 0;font-size:0.95rem;}
+
+  /* --- 共通セクション --- */
+  section{padding:80px 24px;}
+  .section-inner{max-width:760px;margin:0 auto;}
+  h2{
+    font-family:'Shippori Mincho',serif;font-size:clamp(1.4rem,3vw,1.8rem);
+    font-weight:600;letter-spacing:0.04em;margin-bottom:1.2rem;
+  }
+
+  /* --- サイトについて / 運営者について --- */
+  .intro{background:var(--bg-void);}
+  .intro p{color:var(--text-muted);font-size:0.98rem;margin-bottom:1.1rem;}
+  .intro strong{color:var(--gold-bright);font-weight:600;}
+
+  .profile{background:var(--bg-primary);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .profile-grid{display:flex;gap:36px;align-items:flex-start;flex-wrap:wrap;}
+  .profile-icon{
+    width:88px;height:88px;border-radius:50%;flex-shrink:0;
+    background:radial-gradient(circle at 35% 30%, var(--bg-card), var(--bg-void));
+    border:1px solid var(--gold-dim);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cinzel',serif;color:var(--gold-bright);font-size:1.6rem;
+  }
+  .profile-text{flex:1;min-width:240px;}
+  .profile-text p{color:var(--text-muted);font-size:0.95rem;margin-bottom:1rem;}
+  .profile-text strong{color:var(--gold-bright);font-weight:600;}
+
+  /* --- リンク --- */
+  .links{background:var(--bg-void);}
+  .link-group{margin-bottom:44px;}
+  .link-group:last-child{margin-bottom:0;}
+  .link-label{
+    font-family:'EB Garamond',serif;font-style:italic;color:var(--gold);
+    letter-spacing:0.15em;font-size:0.8rem;text-transform:uppercase;
+    margin-bottom:16px;display:flex;align-items:center;gap:12px;
+  }
+  .link-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg, var(--gold-dim), transparent);}
+  .link-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
+  }
+  @media (max-width:600px){.link-grid{grid-template-columns:1fr;}}
+  .link-card{
+    display:flex;align-items:center;gap:14px;
+    background:var(--bg-secondary);border:1px solid var(--line);border-radius:3px;
+    padding:15px 17px;position:relative;overflow:hidden;transition:all .3s ease;
+  }
+  .link-card::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+    background:linear-gradient(180deg, var(--gold), transparent);
+  }
+  .link-card:hover{border-color:var(--gold-dim);transform:translateY(-2px);}
+  .link-icon{
+    width:38px;height:38px;flex-shrink:0;border-radius:3px;
+    background:rgba(201,162,39,0.08);border:1px solid var(--gold-dim);
+    display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  }
+  .link-text{flex:1;min-width:0;}
+  .link-name{display:block;font-size:0.92rem;font-weight:600;color:var(--gold-bright);}
+  .link-desc{display:block;font-size:0.78rem;color:var(--text-faint);margin-top:2px;}
+  .link-arrow{color:var(--gold-dim);font-size:1.1rem;transition:all .3s;flex-shrink:0;}
+  .link-card:hover .link-arrow{color:var(--gold-bright);transform:translateX(3px);}
+
+  /* --- お問い合わせ --- */
+  .contact{background:var(--bg-primary);border-top:1px solid var(--line);}
+  .contact-box{
+    background:var(--bg-secondary);border:1px solid var(--line);border-radius:4px;padding:40px;
+  }
+  .contact-lead{color:var(--text-muted);font-size:0.92rem;margin-bottom:26px;}
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-size:0.82rem;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:8px;}
+  .field .req{color:var(--error);font-style:normal;}
+  .field input, .field textarea{
+    width:100%;background:var(--bg-primary);border:1px solid var(--line);border-radius:2px;
+    padding:12px 14px;color:var(--text-primary);font-family:inherit;font-size:0.94rem;transition:border-color .3s;
+  }
+  .field input:focus, .field textarea:focus{outline:none;border-color:var(--gold);}
+  .field textarea{resize:vertical;min-height:120px;}
+  .field-error{display:block;font-size:0.76rem;color:var(--error);margin-top:6px;}
+  .submit-btn{
+    padding:13px 34px;background:var(--gold);color:var(--bg-void);border:none;border-radius:2px;
+    font-family:inherit;font-weight:600;font-size:0.92rem;letter-spacing:0.08em;cursor:pointer;transition:background .3s;
+  }
+  .submit-btn:hover{background:var(--gold-bright);}
+  .form-success{
+    background:rgba(201,162,39,0.1);border:1px solid var(--gold-dim);border-radius:3px;
+    padding:16px 20px;text-align:center;color:var(--gold-bright);font-size:0.92rem;margin-bottom:20px;
+    display:none;
+  }
+
+  /* --- フッター --- */
+  footer{background:var(--bg-void);border-top:1px solid var(--line);padding:64px 24px 32px;}
+  .footer-inner{max-width:1080px;margin:0 auto;}
+  .footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--line);}
+  .footer-brand .brand{margin-bottom:14px;}
+  .footer-brand p{color:var(--text-faint);font-size:0.85rem;max-width:280px;}
+  .footer-links h4{
+    font-size:0.8rem;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;
+    margin-bottom:16px;font-family:'EB Garamond',serif;font-style:italic;
+  }
+  .footer-links ul{list-style:none;}
+  .footer-links li{margin-bottom:10px;}
+  .footer-links a{color:var(--text-muted);font-size:0.88rem;transition:color .3s;}
+  .footer-links a:hover{color:var(--gold-bright);}
+  .footer-cols{display:flex;gap:64px;flex-wrap:wrap;}
+  .ai-notice{
+    margin-top:32px;padding:18px 22px;border:1px solid var(--line);border-radius:3px;
+    font-size:0.78rem;color:var(--text-faint);line-height:1.8;
+  }
+  .ai-notice strong{color:var(--gold);}
+  .copyright{margin-top:24px;text-align:center;font-size:0.78rem;color:var(--text-faint);letter-spacing:0.05em;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" class="brand"><span>群青の書</span><span class="kanji">— 世界史アーカイブ —</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="メニュー">☰</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="about.html" class="active">ABOUT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <p class="eyebrow">About</p>
+  <h1>About</h1>
+  <p>このサイトについて、運営者について、そしてリンクとお問い合わせを一つにまとめたページです。</p>
+</div>
+
+<section class="intro">
+  <div class="section-inner">
+    <h2>このサイトについて</h2>
+    <p><strong>「群青の書」</strong>は、世界史にまつわる学びや気づきを、日誌形式で記録していくアーカイブサイトです。中世写本を彩った<strong>群青(ラピスラズリ)と金</strong>をモチーフに、断片的な知識を少しずつ積み重ねていくことを目指しています。</p>
+    <p>専門的な研究サイトというより、興味の赴くままに読んだ本や資料の記録帳に近いものです。誤りに気づいたら随時修正していきます。</p>
+  </div>
+</section>
+
+<section class="profile">
+  <div class="section-inner">
+    <h2>運営者について</h2>
+    <div class="profile-grid">
+      <div class="profile-icon">A</div>
+      <div class="profile-text">
+        <p>漫画・イラスト制作や小説執筆、翻訳の勉強をしながら創作活動をしている <strong>Azalea72</strong> が運営しています。「群青の書」は数あるテーマ別サイトの一つで、世界史という切り口で作った個人アーカイブです。</p>
+        <p>その他の創作活動については <strong>Azalea Creative Room</strong> にまとめています。下のリンクからどうぞ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="links">
+  <div class="section-inner">
+    <h2>リンク</h2>
+
+    <div class="link-group">
+      <p class="link-label">漫画・イラスト掲載サイト</p>
+      <div class="link-grid">
+        <a class="link-card" href="https://rookie.shonenjump.com/users/14728546961183734555" target="_blank" rel="noopener">
+          <span class="link-icon">📚</span>
+          <span class="link-text">
+            <span class="link-name">ジャンプルーキー</span>
+            <span class="link-desc">オリジナル漫画を掲載中</span>
+          </span>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://daysneo.com/author/Sam333333Sam/" target="_blank" rel="noopener">
+          <span class="link-icon">🌙</span>
+          <span class="link-text">
+            <span class="link-name">DaysNEO</span>
+            <span class="link-desc">漫画掲載サイト</span>
+          </span>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://www.pixiv.net/users/105728284" target="_blank" rel="noopener">
+          <span class="link-icon">🎨</span>
+          <span class="link-text">
+            <span class="link-name">Pixiv</span>
+            <span class="link-desc">イラスト・二次創作を掲載</span>
+          </span>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">
+          <span class="link-icon">✒️</span>
+          <span class="link-text">
+            <span class="link-name">カクヨム</span>
+            <span class="link-desc">小説を掲載中</span>
+          </span>
+          <span class="link-arrow">›</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="link-group">
+      <p class="link-label">SNS・動画</p>
+      <div class="link-grid">
+        <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
+          <span class="link-icon">🦋</span>
+          <span class="link-text">
+            <span class="link-name">Bluesky</span>
+            <span class="link-desc">近況・作品のお知らせ</span>
+          </span>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://www.youtube.com/@LilyPopins0512" target="_blank" rel="noopener">
+          <span class="link-icon">🎬</span>
+          <span class="link-text">
+            <span class="link-name">YouTube（リリポピ）</span>
+            <span class="link-desc">動画チャンネル</span>
+          </span>
+          <span class="link-arrow">›</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="link-group">
+      <p class="link-label">Azalea Creative Room 内の他サイト</p>
+      <div class="link-grid">
+        <a class="link-card" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">
+          <span class="link-icon">✦</span>
+          <span class="link-text">
+            <span class="link-name">Azalea Creative Room</span>
+            <span class="link-desc">創作活動のハブサイト</span>
+          </span>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://azaleacreativeroom888.github.io/storyreviewazalea/" target="_blank" rel="noopener">
+          <span class="link-icon">📖</span>
+          <span class="link-text">
+            <span class="link-name">書評サイト</span>
+            <span class="link-desc">本・アニメ・映画・小説の備忘録</span>
+          </span>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://azaleacreativeroom888.github.io/fan-english/" target="_blank" rel="noopener">
+          <span class="link-icon">🍔</span>
+          <span class="link-text">
+            <span class="link-name">英語サイト</span>
+            <span class="link-desc">英語話者・学習者向け</span>
+          </span>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://azaleacreativeroom888.github.io/fan-watercolor/" target="_blank" rel="noopener">
+          <span class="link-icon">☁️</span>
+          <span class="link-text">
+            <span class="link-name">水彩画サイト</span>
+            <span class="link-desc">水彩画作品を掲載</span>
+          </span>
+          <span class="link-arrow">›</span>
+        </a>
+        <a class="link-card" href="https://lilipopi.github.io/lilypopins/" target="_blank" rel="noopener">
+          <span class="link-icon">🌸</span>
+          <span class="link-text">
+            <span class="link-name">リリポピのホームページ</span>
+            <span class="link-desc">別サイト</span>
+          </span>
+          <span class="link-arrow">›</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="contact">
+  <div class="section-inner">
+    <h2>お問い合わせ</h2>
+    <div class="contact-box">
+      <p class="contact-lead">ご感想やご指摘など、お気軽にどうぞ。Gmailで受け取り、返信いたします。</p>
+
+      <div class="form-success" data-fs-success>
+        <p>✦ メッセージを送信しました。ありがとうございます！</p>
+      </div>
+
+      <form id="contact-form" action="https://formspree.io/f/maqvpvoz" method="POST">
+        <div class="field">
+          <label for="name">お名前</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">メールアドレス <span class="req">*</span></label>
+          <input type="email" id="email" name="email" data-fs-field required>
+          <span class="field-error" data-fs-error="email"></span>
+        </div>
+        <div class="field">
+          <label for="message">メッセージ <span class="req">*</span></label>
+          <textarea id="message" name="message" data-fs-field required></textarea>
+          <span class="field-error" data-fs-error="message"></span>
+        </div>
+        <button type="submit" class="submit-btn" data-fs-submit-btn>送信する</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="brand"><span>群青の書</span></p>
+        <p>ラピスラズリの群青と写本の金——世界史の断片を綴るアーカイブサイト。</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-links">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Azalea Creative Room</h4>
+          <ul>
+            <li><a href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Creative Room Hub</a></li>
+            <li><a href="https://www.pixiv.net/users/105728284" target="_blank" rel="noopener">Pixiv</a></li>
+            <li><a href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">Kakuyomu</a></li>
+            <li><a href="https://www.youtube.com/@LilyPopins0512" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">Bluesky</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ai-notice">
+      <strong>AI学習利用の禁止について</strong><br>
+      本サイトに掲載する文章・イラスト・画像等の著作物について、生成AIの学習データとしての使用を固く禁じます。無断でのAI学習・複製・二次利用はお控えください。
+    </div>
+    <p class="copyright">© 2026 群青の書 / Azalea Creative Room. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+  menuBtn.addEventListener('click', () => navList.classList.toggle('open'));
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contact-form', formId: 'maqvpvoz' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
