@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日誌 | 群青の書</title>
+<meta name="description" content="世界史にまつわる日々の学びを、日付とともに短く記録する日誌。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#0a1128;
+    --bg-primary:#12204f;
+    --bg-secondary:#1a2c63;
+    --gold:#c9a227;
+    --gold-bright:#e8c468;
+    --gold-dim:rgba(201,162,39,0.35);
+    --text-primary:#ede6d3;
+    --text-muted:#9aa3c9;
+    --text-faint:#6d78a3;
+    --line:rgba(201,162,39,0.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-void);
+    color:var(--text-primary);
+    font-family:'Noto Serif JP','Shippori Mincho',serif;
+    line-height:1.9;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* --- ヘッダー --- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,17,40,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;
+  }
+  .brand{
+    font-family:'Cinzel',serif;
+    font-size:1.25rem;
+    letter-spacing:0.12em;
+    color:var(--gold-bright);
+    display:flex;align-items:center;gap:10px;
+  }
+  .brand .kanji{
+    font-family:'Shippori Mincho',serif;
+    color:var(--text-primary);
+    font-size:1.05rem;
+    letter-spacing:0.06em;
+  }
+  nav ul{list-style:none;display:flex;gap:2.2rem;}
+  nav a{
+    font-size:0.92rem;letter-spacing:0.08em;color:var(--text-muted);
+    position:relative;padding:4px 0;transition:color .3s;
+  }
+  nav a::after{
+    content:'';position:absolute;left:0;bottom:-4px;
+    width:0;height:1px;background:var(--gold);
+    transition:width .35s ease;
+  }
+  nav a:hover, nav a.active{color:var(--gold-bright);}
+  nav a:hover::after, nav a.active::after{width:100%;}
+  .menu-btn{display:none;background:none;border:1px solid var(--gold-dim);color:var(--gold-bright);
+    width:40px;height:40px;border-radius:2px;font-size:1.2rem;cursor:pointer;}
+
+  @media (max-width:760px){
+    nav ul{
+      position:fixed;top:0;right:-100%;width:70%;height:100vh;
+      background:var(--bg-primary);flex-direction:column;
+      padding:100px 32px;gap:1.8rem;transition:right .4s ease;
+      border-left:1px solid var(--line);
+    }
+    nav ul.open{right:0;}
+    .menu-btn{display:block;}
+  }
+
+  /* --- ページヘッダー --- */
+  .page-head{
+    padding:100px 24px 60px;text-align:center;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(201,162,39,0.08), transparent 55%),
+      linear-gradient(180deg, var(--bg-void) 0%, var(--bg-primary) 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'EB Garamond',serif;font-style:italic;
+    color:var(--gold);letter-spacing:0.2em;font-size:0.82rem;
+    text-transform:uppercase;margin-bottom:0.9rem;
+  }
+  .page-head h1{
+    font-family:'Shippori Mincho',serif;
+    font-size:clamp(2rem,5vw,2.8rem);
+    font-weight:600;letter-spacing:0.06em;
+    color:var(--gold-bright);
+  }
+  .page-head p{
+    color:var(--text-muted);max-width:520px;margin:1.2rem auto 0;font-size:0.95rem;
+  }
+
+  /* --- 日誌一覧 --- */
+  .journal{max-width:720px;margin:0 auto;padding:80px 24px 120px;}
+  .entry{
+    position:relative;
+    padding:0 0 48px 36px;
+    border-left:1px solid var(--line);
+  }
+  .entry:last-child{padding-bottom:0;}
+  .entry::before{
+    content:'';position:absolute;left:-5px;top:6px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--bg-void);border:2px solid var(--gold);
+  }
+  .entry-date{
+    font-family:'EB Garamond',serif;font-style:italic;
+    color:var(--gold);font-size:0.9rem;letter-spacing:0.05em;
+    margin-bottom:10px;display:block;
+  }
+  .entry-text{
+    color:var(--text-primary);font-size:0.98rem;line-height:1.95;
+    white-space:pre-line;
+  }
+
+  /* --- フッター --- */
+  footer{
+    background:var(--bg-void);
+    border-top:1px solid var(--line);
+    padding:64px 24px 32px;
+  }
+  .footer-inner{max-width:1080px;margin:0 auto;}
+  .footer-top{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;
+    padding-bottom:40px;border-bottom:1px solid var(--line);
+  }
+  .footer-brand .brand{margin-bottom:14px;}
+  .footer-brand p{color:var(--text-faint);font-size:0.85rem;max-width:280px;}
+  .footer-links h4{
+    font-size:0.8rem;letter-spacing:0.12em;color:var(--gold);
+    text-transform:uppercase;margin-bottom:16px;font-family:'EB Garamond',serif;font-style:italic;
+  }
+  .footer-links ul{list-style:none;}
+  .footer-links li{margin-bottom:10px;}
+  .footer-links a{color:var(--text-muted);font-size:0.88rem;transition:color .3s;}
+  .footer-links a:hover{color:var(--gold-bright);}
+  .footer-cols{display:flex;gap:64px;flex-wrap:wrap;}
+  .ai-notice{
+    margin-top:32px;padding:18px 22px;
+    border:1px solid var(--line);border-radius:3px;
+    font-size:0.78rem;color:var(--text-faint);line-height:1.8;
+  }
+  .ai-notice strong{color:var(--gold);}
+  .copyright{
+    margin-top:24px;text-align:center;font-size:0.78rem;color:var(--text-faint);
+    letter-spacing:0.05em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" class="brand"><span>群青の書</span><span class="kanji">— 世界史アーカイブ —</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="メニュー">☰</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="blog.html" class="active">BLOG</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <p class="eyebrow">Journal</p>
+  <h1>日誌</h1>
+  <p>読んだこと、気づいたことを、日付とともに短く残していく。</p>
+</div>
+
+<div class="journal">
+
+  <div class="entry">
+    <span class="entry-date">2026.07.18</span>
+    <p class="entry-text">サイトを作り始めた。群青と金の組み合わせは、思っていたよりしっくりくる。写本の顔料の話を調べていたら、ラピスラズリが金より高かったという話に行き着いて、これはもう軸にするしかないと思った。</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="brand"><span>群青の書</span></p>
+        <p>ラピスラズリの群青と写本の金——世界史の断片を綴るアーカイブサイト。</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-links">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Azalea Creative Room</h4>
+          <ul>
+            <li><a href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Creative Room Hub</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Pixiv</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Kakuyomu</a></li>
+            <li><a href="#" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Bluesky</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ai-notice">
+      <strong>AI学習利用の禁止について</strong><br>
+      本サイトに掲載する文章・イラスト・画像等の著作物について、生成AIの学習データとしての使用を固く禁じます。無断でのAI学習・複製・二次利用はお控えください。
+    </div>
+    <p class="copyright">© 2026 群青の書 / Azalea Creative Room. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+  menuBtn.addEventListener('click', () => navList.classList.toggle('open'));
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+</script>
+
+</body>
+</html>
