@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>人類の進化 vol.1 ネアンデルタール人 | 群青の書</title>
-<meta name="description" content="特集レポート第一回。私たちの祖先と同じ時代を生きたもう一つの人類、ネアンデルタール人について。">
+<title>人類の進化 | 群青の書</title>
+<meta name="description" content="特集レポート。猿人・原人・旧人・新人——人類がたどってきた進化の道のりを辿る。">
 <meta name="robots" content="noai, noimageai">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,8 +110,25 @@
   }
   .report-meta span::before{content:'✦';color:var(--gold-dim);margin-right:6px;font-size:0.7rem;}
 
+  /* --- ステージナビ --- */
+  .stage-nav{
+    max-width:720px;margin:40px auto 0;padding:0 24px;
+    display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
+  }
+  .stage-nav a{
+    font-size:0.8rem;letter-spacing:0.05em;color:var(--text-muted);
+    border:1px solid var(--gold-dim);border-radius:20px;padding:7px 18px;
+    transition:all .3s ease;
+  }
+  .stage-nav a:hover{color:var(--gold-bright);border-color:var(--gold);background:rgba(201,162,39,0.08);}
+  .stage-nav a span{color:var(--gold);margin-right:5px;font-family:'EB Garamond',serif;font-style:italic;}
+
   /* --- 本文 --- */
   .article{max-width:720px;margin:0 auto;padding:60px 24px 100px;}
+  .stage-period{
+    font-family:'EB Garamond',serif;font-style:italic;color:var(--text-faint);
+    font-size:0.85rem;letter-spacing:0.04em;margin:-0.6rem 0 1.4rem;display:block;
+  }
   .lede{
     font-size:1.02rem;color:var(--text-muted);margin-bottom:3rem;
     padding-left:20px;border-left:2px solid var(--gold-dim);
@@ -212,29 +229,58 @@
 <p class="breadcrumb"><a href="gallery.html">ギャラリー</a> ／ 特集レポート</p>
 
 <div class="report-head">
-  <p class="report-series">Feature Report — vol.1</p>
+  <p class="report-series">Feature Report</p>
   <h1>人類の進化<span class="en">THE EVOLUTION OF MAN</span></h1>
   <div class="report-meta">
-    <span>第一回：ネアンデルタール人</span>
-    <span>約40万〜4万年前</span>
+    <span>猿人・原人・旧人・新人</span>
+    <span>約700万年前〜現在</span>
   </div>
+</div>
+
+<div class="stage-nav">
+  <a href="#stage1"><span>I.</span>猿人</a>
+  <a href="#stage2"><span>II.</span>原人</a>
+  <a href="#stage3"><span>III.</span>旧人</a>
+  <a href="#stage4"><span>IV.</span>新人</a>
 </div>
 
 <article class="article">
 
-  <p class="lede">「人類の進化」特集、第一回のテーマは<strong>ネアンデルタール人</strong>。私たちホモ・サピエンスと同じ時代、同じ大地を歩いたもう一つの人類について、わかっていることを少しずつまとめていく。</p>
+  <p class="lede">人類は一夜にして今の姿になったわけではない。<strong>猿人・原人・旧人・新人</strong>という大きな4つの段階を経て、数百万年かけて今の私たちへとつながってきた。それぞれの段階で何が変わり、何が受け継がれたのかを辿っていく。</p>
 
-  <h2><span class="idx">01.</span> もう一人の人類</h2>
-  <p>ネアンデルタール人(<em>Homo neanderthalensis</em>)は、約40万年前にヨーロッパで姿を現し、西はイベリア半島から東は中央アジアまで広く分布していたと考えられている。名前の由来は、1856年にドイツ・デュッセルドルフ近郊の<strong>ネアンデル谷</strong>で化石が発見されたことにある。</p>
-  <p>長らく「原始的で知能の低い人類」というイメージで語られてきたが、近年の研究によってそのイメージは大きく塗り替えられつつある。</p>
+  <h2 id="stage1"><span class="idx">01.</span> 猿人 — 二足歩行の始まり</h2>
+  <span class="stage-period">約700万〜200万年前</span>
+  <p>人類の系譜で最初に現れるのが<strong>猿人(アウストラロピテクスなど)</strong>。チンパンジーなど類人猿と分かれた最古の人類に近いグループで、最大の特徴は<strong>直立二足歩行</strong>を始めたことにある。脳の大きさはまだチンパンジーに近い約400〜500cm³で、道具作りも限定的だった。</p>
 
   <div class="figure-note">
     <span class="mark">FIG. 1</span>
-    <span>ネアンデルタール人の復元図（挿絵準備中）</span>
+    <span>猿人の復元図（挿絵準備中）</span>
   </div>
 
-  <h2><span class="idx">02.</span> 身体的特徴</h2>
-  <p>ネアンデルタール人は、現生人類と比べてがっしりとした体格を持ち、寒冷な気候への適応と考えられる特徴を多く備えていた。</p>
+  <div class="fact-box">
+    <h3>Key Fossil</h3>
+    <dl>
+      <dt>名前</dt><dd>ルーシー（Australopithecus afarensis）</dd>
+      <dt>発見</dt><dd>1974年、エチオピアで発見された約318万年前の化石</dd>
+      <dt>意義</dt><dd>ほぼ全身の骨格が揃い、二足歩行の直接的な証拠となった</dd>
+    </dl>
+  </div>
+
+  <p>両手が歩行から解放されたことで、やがて道具を扱う手の進化につながっていく。猿人の段階では、まだアフリカ大陸の外には出ていない。</p>
+
+  <h2 id="stage2"><span class="idx">02.</span> 原人 — 火と道具、そして旅立ち</h2>
+  <span class="stage-period">約190万〜数十万年前</span>
+  <p><strong>原人(ホモ・エレクトゥスなど)</strong>の段階になると、脳容積は約900〜1100cm³まで増大し、アシューリアン型と呼ばれる左右対称の手斧を作るようになる。そして何より大きな変化は、<strong>アフリカを出て旧世界へ拡散した</strong>こと。ジャワ原人や北京原人として知られる化石は、この拡散の証拠だ。</p>
+  <p><strong>火の利用</strong>もこの頃から始まったと考えられている。加熱調理によって消化効率が上がり、より多くのエネルギーを脳に回せるようになったことが、その後の脳の発達を後押ししたという説もある。</p>
+
+  <div class="pull-quote">
+    二本の足で立ち、火を使い、大陸を越える——原人の段階で、人類は初めて「アフリカの外」を知った。
+  </div>
+
+  <h2 id="stage3"><span class="idx">03.</span> 旧人 — ネアンデルタール人という隣人</h2>
+  <span class="stage-period">約40万〜4万年前</span>
+  <p><strong>旧人</strong>の代表格が<strong>ネアンデルタール人(<em>Homo neanderthalensis</em>)</strong>。約40万年前にヨーロッパで姿を現し、西はイベリア半島から東は中央アジアまで広く分布していた。名前の由来は、1856年にドイツ・デュッセルドルフ近郊の<strong>ネアンデル谷</strong>で化石が発見されたことにある。</p>
+  <p>長らく「原始的で知能の低い人類」というイメージで語られてきたが、近年の研究によってそのイメージは大きく塗り替えられつつある。</p>
 
   <div class="fact-box">
     <h3>Physical Profile</h3>
@@ -246,25 +292,25 @@
     </dl>
   </div>
 
-  <p>特に注目すべきは<strong>脳容積</strong>で、平均するとむしろ現生人類よりやや大きかったとされる。もちろん脳の大きさと知能は単純には結びつかないが、「原始的」という単純なイメージを見直す材料の一つになっている。</p>
-
-  <h2><span class="idx">03.</span> 文化と行動</h2>
-  <p>かつては考えられていなかった、ネアンデルタール人の「文化的」な行動を示す証拠が近年次々と報告されている。</p>
-  <p><strong>死者の埋葬</strong>——フランスのラ・シャペルオーサン遺跡など、複数の遺跡で意図的に埋葬されたとみられる遺骸が見つかっている。花粉が一緒に発見された例もあり、死者に花を手向けたのではないかという説もある(議論は続いている)。</p>
-  <p><strong>道具の製作</strong>——ムスティエ文化と呼ばれる石器技術を持ち、剥片石器を巧みに加工していた。接着剤として樹脂を利用した痕跡も見つかっている。</p>
+  <p>脳容積は平均するとむしろ現生人類よりやや大きかったとされ、「原始的」という単純なイメージを見直す材料の一つになっている。さらに近年は次のような「文化的」な行動の証拠も報告されている。</p>
+  <p><strong>死者の埋葬</strong>——フランスのラ・シャペルオーサン遺跡など、複数の遺跡で意図的に埋葬されたとみられる遺骸が見つかっている。</p>
+  <p><strong>道具の製作</strong>——ムスティエ文化と呼ばれる石器技術を持ち、剥片石器を巧みに加工していた。</p>
   <p><strong>装飾と象徴行動</strong>——スペインの洞窟では、ネアンデルタール人が描いたとされる洞窟壁画や、顔料・貝殻を使った装飾品の痕跡が報告されている。</p>
 
-  <div class="pull-quote">
-    「道具を使うだけの存在」から「象徴を扱う存在」へ——ネアンデルタール人像は、発掘調査が進むたびに更新され続けている。
+  <p>ネアンデルタール人とホモ・サピエンスは、少なくとも数万年にわたってヨーロッパや西アジアで共存し、交雑もしていたことがゲノム研究でわかっている。現在のヨーロッパ系・アジア系の人々のゲノムには、平均して1〜2%程度のネアンデルタール人由来のDNAが含まれている。約4万年前を最後に化石記録は途絶え、絶滅の原因には気候変動や資源競合など複数の説があるが、決定的な答えはまだ出ていない。</p>
+
+  <h2 id="stage4"><span class="idx">04.</span> 新人 — 私たちホモ・サピエンス</h2>
+  <span class="stage-period">約30万年前〜現在</span>
+  <p>そして現れるのが<strong>新人、すなわちホモ・サピエンス</strong>。モロッコのジェベル・イルード遺跡の化石などから、その起源は約30万年前のアフリカまで遡ると考えられている。約6〜7万年前以降にアフリカを出て(出アフリカ)、ユーラシア、オセアニア、アメリカ大陸へと広がっていった。</p>
+  <p>フランスのラスコーやスペインのアルタミラに残る洞窟壁画は、新人が高度な象徴表現を持っていたことを示す代表例。約1万年前には農耕が始まり、定住と文明の歴史へとつながっていく。</p>
+
+  <div class="figure-note">
+    <span class="mark">FIG. 2</span>
+    <span>ホモ・サピエンスの拡散ルート（図版準備中）</span>
   </div>
 
-  <h2><span class="idx">04.</span> ホモ・サピエンスとの関係</h2>
-  <p>ネアンデルタール人とホモ・サピエンスは、少なくとも数万年にわたってヨーロッパや西アジアで共存していたと考えられている。2010年代のゲノム研究により、両者が交雑していたことが明らかになり、現在のヨーロッパ系・アジア系の人々のゲノムには、平均して1〜2%程度のネアンデルタール人由来のDNAが含まれていることがわかっている。</p>
-  <p>約4万年前を最後にネアンデルタール人の化石記録は途絶える。絶滅の原因については、気候変動、ホモ・サピエンスとの資源競合、人口規模の小ささなど複数の説があり、単一の決定的な答えはまだ出ていない。</p>
-
   <h2><span class="idx">05.</span> まとめ</h2>
-  <p>ネアンデルタール人は、私たちとは別の種でありながら、埋葬や装飾、道具の工夫といった「人間らしさ」の一端を確かに持っていた存在だった。そして今も、私たちの体の中にその痕跡の一部が残っている。</p>
-  <p>次回は、ネアンデルタール人と同時期に存在したことで知られる<strong>デニソワ人</strong>を取り上げる予定。</p>
+  <p>猿人の二足歩行、原人の火と拡散、旧人の文化的行動、そして新人の象徴表現と定住——それぞれの段階が積み重なって、今の私たちの姿がある。ネアンデルタール人のように、私たちとは別の種でありながら「人間らしさ」の一端を確かに持っていた存在もいた。その痕跡の一部は、今も私たちの体の中に残っている。</p>
 
 </article>
 
