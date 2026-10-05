@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人類の進化 vol.1 ネアンデルタール人 | 群青の書</title>
+<meta name="description" content="特集レポート第一回。私たちの祖先と同じ時代を生きたもう一つの人類、ネアンデルタール人について。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#0a1128;
+    --bg-primary:#12204f;
+    --bg-secondary:#1a2c63;
+    --bg-card:#1e3272;
+    --gold:#c9a227;
+    --gold-bright:#e8c468;
+    --gold-dim:rgba(201,162,39,0.35);
+    --text-primary:#ede6d3;
+    --text-muted:#9aa3c9;
+    --text-faint:#6d78a3;
+    --line:rgba(201,162,39,0.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-void);
+    color:var(--text-primary);
+    font-family:'Noto Serif JP','Shippori Mincho',serif;
+    line-height:1.9;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  /* --- ヘッダー --- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,17,40,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;
+  }
+  .brand{
+    font-family:'Cinzel',serif;font-size:1.25rem;letter-spacing:0.12em;
+    color:var(--gold-bright);display:flex;align-items:center;gap:10px;
+  }
+  .brand .kanji{
+    font-family:'Shippori Mincho',serif;color:var(--text-primary);
+    font-size:1.05rem;letter-spacing:0.06em;
+  }
+  nav ul{list-style:none;display:flex;gap:2.2rem;}
+  nav a{
+    font-size:0.92rem;letter-spacing:0.08em;color:var(--text-muted);
+    position:relative;padding:4px 0;transition:color .3s;
+  }
+  nav a::after{
+    content:'';position:absolute;left:0;bottom:-4px;
+    width:0;height:1px;background:var(--gold);transition:width .35s ease;
+  }
+  nav a:hover, nav a.active{color:var(--gold-bright);}
+  nav a:hover::after, nav a.active::after{width:100%;}
+  .menu-btn{display:none;background:none;border:1px solid var(--gold-dim);color:var(--gold-bright);
+    width:40px;height:40px;border-radius:2px;font-size:1.2rem;cursor:pointer;}
+
+  @media (max-width:760px){
+    nav ul{
+      position:fixed;top:0;right:-100%;width:70%;height:100vh;
+      background:var(--bg-primary);flex-direction:column;
+      padding:100px 32px;gap:1.8rem;transition:right .4s ease;
+      border-left:1px solid var(--line);
+    }
+    nav ul.open{right:0;}
+    .menu-btn{display:block;}
+  }
+
+  /* --- パンくず --- */
+  .breadcrumb{
+    max-width:720px;margin:0 auto;padding:28px 24px 0;
+    font-size:0.8rem;color:var(--text-faint);letter-spacing:0.03em;
+  }
+  .breadcrumb a{color:var(--gold);transition:color .3s;}
+  .breadcrumb a:hover{color:var(--gold-bright);}
+
+  /* --- レポートヘッダー --- */
+  .report-head{
+    max-width:720px;margin:0 auto;padding:36px 24px 56px;
+    text-align:center;border-bottom:1px solid var(--line);
+  }
+  .report-series{
+    font-family:'EB Garamond',serif;font-style:italic;color:var(--gold);
+    letter-spacing:0.22em;font-size:0.82rem;text-transform:uppercase;margin-bottom:1rem;
+  }
+  .report-head h1{
+    font-family:'Shippori Mincho',serif;font-size:clamp(1.9rem,5vw,2.6rem);
+    font-weight:600;letter-spacing:0.05em;color:var(--gold-bright);line-height:1.4;
+  }
+  .report-head .en{
+    display:block;font-family:'Cinzel',serif;font-size:0.95rem;letter-spacing:0.15em;
+    color:var(--text-faint);margin-top:0.8rem;
+  }
+  .report-meta{
+    margin-top:1.6rem;display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;
+    font-size:0.82rem;color:var(--text-muted);letter-spacing:0.04em;
+  }
+  .report-meta span::before{content:'✦';color:var(--gold-dim);margin-right:6px;font-size:0.7rem;}
+
+  /* --- 本文 --- */
+  .article{max-width:720px;margin:0 auto;padding:60px 24px 100px;}
+  .lede{
+    font-size:1.02rem;color:var(--text-muted);margin-bottom:3rem;
+    padding-left:20px;border-left:2px solid var(--gold-dim);
+  }
+  .article h2{
+    font-family:'Shippori Mincho',serif;font-size:1.35rem;font-weight:600;
+    color:var(--gold-bright);margin:3rem 0 1.2rem;
+    display:flex;align-items:center;gap:12px;
+  }
+  .article h2 .idx{
+    font-family:'EB Garamond',serif;font-style:italic;color:var(--gold);
+    font-size:1.1rem;
+  }
+  .article p{font-size:0.98rem;color:var(--text-primary);margin-bottom:1.2rem;}
+  .article strong{color:var(--gold-bright);font-weight:600;}
+
+  .pull-quote{
+    margin:2.4rem 0;padding:24px 28px;
+    background:var(--bg-secondary);border-left:3px solid var(--gold);border-radius:0 3px 3px 0;
+    font-size:0.98rem;color:var(--text-muted);font-style:italic;
+  }
+
+  .fact-box{
+    margin:2.4rem 0;padding:26px 28px;
+    background:var(--bg-primary);border:1px solid var(--line);border-radius:4px;
+  }
+  .fact-box h3{
+    font-family:'EB Garamond',serif;font-style:italic;color:var(--gold);
+    letter-spacing:0.1em;font-size:0.85rem;text-transform:uppercase;margin-bottom:1rem;
+  }
+  .fact-box dl{display:grid;grid-template-columns:auto 1fr;gap:10px 20px;}
+  .fact-box dt{color:var(--text-faint);font-size:0.85rem;white-space:nowrap;}
+  .fact-box dd{color:var(--text-primary);font-size:0.9rem;}
+
+  .figure-note{
+    margin:2.4rem 0;aspect-ratio:16/9;border-radius:3px;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(232,196,104,0.08), transparent 60%),
+      linear-gradient(155deg, var(--bg-secondary), var(--bg-void));
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-faint);font-size:0.82rem;letter-spacing:0.05em;text-align:center;
+    flex-direction:column;gap:8px;
+  }
+  .figure-note .mark{font-family:'Cinzel',serif;color:var(--gold-dim);font-size:1.2rem;letter-spacing:0.1em;}
+
+  .series-nav{
+    max-width:720px;margin:0 auto;padding:0 24px 100px;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  }
+  .series-nav a{
+    font-size:0.85rem;letter-spacing:0.06em;color:var(--text-muted);
+    border:1px solid var(--gold-dim);border-radius:2px;padding:10px 20px;transition:all .3s;
+  }
+  .series-nav a:hover{color:var(--gold-bright);border-color:var(--gold);background:rgba(201,162,39,0.08);}
+  .series-nav .disabled{opacity:0.4;pointer-events:none;}
+
+  /* --- フッター --- */
+  footer{background:var(--bg-void);border-top:1px solid var(--line);padding:64px 24px 32px;}
+  .footer-inner{max-width:1080px;margin:0 auto;}
+  .footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--line);}
+  .footer-brand .brand{margin-bottom:14px;}
+  .footer-brand p{color:var(--text-faint);font-size:0.85rem;max-width:280px;}
+  .footer-links h4{
+    font-size:0.8rem;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;
+    margin-bottom:16px;font-family:'EB Garamond',serif;font-style:italic;
+  }
+  .footer-links ul{list-style:none;}
+  .footer-links li{margin-bottom:10px;}
+  .footer-links a{color:var(--text-muted);font-size:0.88rem;transition:color .3s;}
+  .footer-links a:hover{color:var(--gold-bright);}
+  .footer-cols{display:flex;gap:64px;flex-wrap:wrap;}
+  .ai-notice{
+    margin-top:32px;padding:18px 22px;border:1px solid var(--line);border-radius:3px;
+    font-size:0.78rem;color:var(--text-faint);line-height:1.8;
+  }
+  .ai-notice strong{color:var(--gold);}
+  .copyright{margin-top:24px;text-align:center;font-size:0.78rem;color:var(--text-faint);letter-spacing:0.05em;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" class="brand"><span>群青の書</span><span class="kanji">— 世界史アーカイブ —</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="メニュー">☰</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="gallery.html" class="active">GALLERY</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<p class="breadcrumb"><a href="gallery.html">ギャラリー</a> ／ 特集レポート</p>
+
+<div class="report-head">
+  <p class="report-series">Feature Report — vol.1</p>
+  <h1>人類の進化<span class="en">THE EVOLUTION OF MAN</span></h1>
+  <div class="report-meta">
+    <span>第一回：ネアンデルタール人</span>
+    <span>約40万〜4万年前</span>
+  </div>
+</div>
+
+<article class="article">
+
+  <p class="lede">「人類の進化」特集、第一回のテーマは<strong>ネアンデルタール人</strong>。私たちホモ・サピエンスと同じ時代、同じ大地を歩いたもう一つの人類について、わかっていることを少しずつまとめていく。</p>
+
+  <h2><span class="idx">01.</span> もう一人の人類</h2>
+  <p>ネアンデルタール人(<em>Homo neanderthalensis</em>)は、約40万年前にヨーロッパで姿を現し、西はイベリア半島から東は中央アジアまで広く分布していたと考えられている。名前の由来は、1856年にドイツ・デュッセルドルフ近郊の<strong>ネアンデル谷</strong>で化石が発見されたことにある。</p>
+  <p>長らく「原始的で知能の低い人類」というイメージで語られてきたが、近年の研究によってそのイメージは大きく塗り替えられつつある。</p>
+
+  <div class="figure-note">
+    <span class="mark">FIG. 1</span>
+    <span>ネアンデルタール人の復元図（挿絵準備中）</span>
+  </div>
+
+  <h2><span class="idx">02.</span> 身体的特徴</h2>
+  <p>ネアンデルタール人は、現生人類と比べてがっしりとした体格を持ち、寒冷な気候への適応と考えられる特徴を多く備えていた。</p>
+
+  <div class="fact-box">
+    <h3>Physical Profile</h3>
+    <dl>
+      <dt>平均身長</dt><dd>男性約165cm、女性約155cm前後</dd>
+      <dt>体格</dt><dd>がっしりとした骨格、現生人類より筋肉質</dd>
+      <dt>脳容積</dt><dd>約1,500〜1,600cm³（現生人類と同等かそれ以上）</dd>
+      <dt>特徴的な骨格</dt><dd>張り出した眉弓、低く長い頭蓋、大きな鼻腔</dd>
+    </dl>
+  </div>
+
+  <p>特に注目すべきは<strong>脳容積</strong>で、平均するとむしろ現生人類よりやや大きかったとされる。もちろん脳の大きさと知能は単純には結びつかないが、「原始的」という単純なイメージを見直す材料の一つになっている。</p>
+
+  <h2><span class="idx">03.</span> 文化と行動</h2>
+  <p>かつては考えられていなかった、ネアンデルタール人の「文化的」な行動を示す証拠が近年次々と報告されている。</p>
+  <p><strong>死者の埋葬</strong>——フランスのラ・シャペルオーサン遺跡など、複数の遺跡で意図的に埋葬されたとみられる遺骸が見つかっている。花粉が一緒に発見された例もあり、死者に花を手向けたのではないかという説もある(議論は続いている)。</p>
+  <p><strong>道具の製作</strong>——ムスティエ文化と呼ばれる石器技術を持ち、剥片石器を巧みに加工していた。接着剤として樹脂を利用した痕跡も見つかっている。</p>
+  <p><strong>装飾と象徴行動</strong>——スペインの洞窟では、ネアンデルタール人が描いたとされる洞窟壁画や、顔料・貝殻を使った装飾品の痕跡が報告されている。</p>
+
+  <div class="pull-quote">
+    「道具を使うだけの存在」から「象徴を扱う存在」へ——ネアンデルタール人像は、発掘調査が進むたびに更新され続けている。
+  </div>
+
+  <h2><span class="idx">04.</span> ホモ・サピエンスとの関係</h2>
+  <p>ネアンデルタール人とホモ・サピエンスは、少なくとも数万年にわたってヨーロッパや西アジアで共存していたと考えられている。2010年代のゲノム研究により、両者が交雑していたことが明らかになり、現在のヨーロッパ系・アジア系の人々のゲノムには、平均して1〜2%程度のネアンデルタール人由来のDNAが含まれていることがわかっている。</p>
+  <p>約4万年前を最後にネアンデルタール人の化石記録は途絶える。絶滅の原因については、気候変動、ホモ・サピエンスとの資源競合、人口規模の小ささなど複数の説があり、単一の決定的な答えはまだ出ていない。</p>
+
+  <h2><span class="idx">05.</span> まとめ</h2>
+  <p>ネアンデルタール人は、私たちとは別の種でありながら、埋葬や装飾、道具の工夫といった「人間らしさ」の一端を確かに持っていた存在だった。そして今も、私たちの体の中にその痕跡の一部が残っている。</p>
+  <p>次回は、ネアンデルタール人と同時期に存在したことで知られる<strong>デニソワ人</strong>を取り上げる予定。</p>
+
+</article>
+
+<div class="series-nav">
+  <span class="disabled">← 前の回</span>
+  <a href="gallery.html">ギャラリーに戻る</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="brand"><span>群青の書</span></p>
+        <p>ラピスラズリの群青と写本の金——世界史の断片を綴るアーカイブサイト。</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-links">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Azalea Creative Room</h4>
+          <ul>
+            <li><a href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Creative Room Hub</a></li>
+            <li><a href="https://www.pixiv.net/users/105728284" target="_blank" rel="noopener">Pixiv</a></li>
+            <li><a href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">Kakuyomu</a></li>
+            <li><a href="https://www.youtube.com/@LilyPopins0512" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">Bluesky</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ai-notice">
+      <strong>AI学習利用の禁止について</strong><br>
+      本サイトに掲載する文章・イラスト・画像等の著作物について、生成AIの学習データとしての使用を固く禁じます。無断でのAI学習・複製・二次利用はお控えください。
+    </div>
+    <p class="copyright">© 2026 群青の書 / Azalea Creative Room. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+  menuBtn.addEventListener('click', () => navList.classList.toggle('open'));
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+</script>
+
+</body>
+</html>
