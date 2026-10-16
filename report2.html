@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>世界史辞典 | 群青の書</title>
+<meta name="description" content="世界史に出てくる用語を、単語名・時代・解説でまとめた単語帳。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#0a1128;
+    --bg-primary:#12204f;
+    --bg-secondary:#1a2c63;
+    --bg-card:#1e3272;
+    --gold:#c9a227;
+    --gold-bright:#e8c468;
+    --gold-dim:rgba(201,162,39,0.35);
+    --text-primary:#ede6d3;
+    --text-muted:#9aa3c9;
+    --text-faint:#6d78a3;
+    --line:rgba(201,162,39,0.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-void);
+    color:var(--text-primary);
+    font-family:'Noto Serif JP','Shippori Mincho',serif;
+    line-height:1.9;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* --- ヘッダー --- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,17,40,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;
+  }
+  .brand{
+    font-family:'Cinzel',serif;font-size:1.25rem;letter-spacing:0.12em;
+    color:var(--gold-bright);display:flex;align-items:center;gap:10px;
+  }
+  .brand .kanji{
+    font-family:'Shippori Mincho',serif;color:var(--text-primary);
+    font-size:1.05rem;letter-spacing:0.06em;
+  }
+  nav ul{list-style:none;display:flex;gap:2.2rem;}
+  nav a{
+    font-size:0.92rem;letter-spacing:0.08em;color:var(--text-muted);
+    position:relative;padding:4px 0;transition:color .3s;
+  }
+  nav a::after{
+    content:'';position:absolute;left:0;bottom:-4px;
+    width:0;height:1px;background:var(--gold);transition:width .35s ease;
+  }
+  nav a:hover, nav a.active{color:var(--gold-bright);}
+  nav a:hover::after, nav a.active::after{width:100%;}
+  .menu-btn{display:none;background:none;border:1px solid var(--gold-dim);color:var(--gold-bright);
+    width:40px;height:40px;border-radius:2px;font-size:1.2rem;cursor:pointer;}
+
+  @media (max-width:760px){
+    nav ul{
+      position:fixed;top:0;right:-100%;width:70%;height:100vh;
+      background:var(--bg-primary);flex-direction:column;
+      padding:100px 32px;gap:1.8rem;transition:right .4s ease;
+      border-left:1px solid var(--line);
+    }
+    nav ul.open{right:0;}
+    .menu-btn{display:block;}
+  }
+
+  /* --- パンくず --- */
+  .breadcrumb{
+    max-width:860px;margin:0 auto;padding:28px 24px 0;
+    font-size:0.8rem;color:var(--text-faint);letter-spacing:0.03em;
+  }
+  .breadcrumb a{color:var(--gold);transition:color .3s;}
+  .breadcrumb a:hover{color:var(--gold-bright);}
+
+  /* --- ページヘッダー --- */
+  .page-head{
+    max-width:860px;margin:0 auto;padding:36px 24px 44px;
+    text-align:center;border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'EB Garamond',serif;font-style:italic;color:var(--gold);
+    letter-spacing:0.22em;font-size:0.82rem;text-transform:uppercase;margin-bottom:1rem;
+  }
+  .page-head h1{
+    font-family:'Shippori Mincho',serif;font-size:clamp(1.9rem,5vw,2.6rem);
+    font-weight:600;letter-spacing:0.05em;color:var(--gold-bright);line-height:1.4;
+  }
+  .page-head .en{
+    display:block;font-family:'Cinzel',serif;font-size:0.95rem;letter-spacing:0.15em;
+    color:var(--text-faint);margin-top:0.8rem;
+  }
+  .page-head p.lead{color:var(--text-muted);font-size:0.92rem;margin-top:1.4rem;}
+
+  /* --- 検索 --- */
+  .search-wrap{max-width:860px;margin:0 auto;padding:36px 24px 0;}
+  .search-wrap input{
+    width:100%;background:var(--bg-primary);border:1px solid var(--line);border-radius:2px;
+    padding:13px 16px;color:var(--text-primary);font-family:inherit;font-size:0.94rem;
+    transition:border-color .3s;
+  }
+  .search-wrap input::placeholder{color:var(--text-faint);}
+  .search-wrap input:focus{outline:none;border-color:var(--gold);}
+  .count{font-size:0.8rem;color:var(--text-faint);margin-top:10px;letter-spacing:0.03em;}
+
+  /* --- 単語リスト --- */
+  .glossary{max-width:860px;margin:0 auto;padding:28px 24px 120px;display:grid;gap:16px;}
+  .term{
+    position:relative;overflow:hidden;
+    background:var(--bg-secondary);border:1px solid var(--line);border-radius:3px;
+    padding:24px 26px 24px 30px;transition:border-color .3s;
+  }
+  .term::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(180deg, var(--gold), transparent);
+  }
+  .term:hover{border-color:var(--gold-dim);}
+  .term-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;margin-bottom:10px;
+  }
+  .term-name{
+    font-family:'Shippori Mincho',serif;font-size:1.2rem;font-weight:600;color:var(--gold-bright);
+  }
+  .term-era{
+    font-family:'EB Garamond',serif;font-style:italic;font-size:0.85rem;
+    color:var(--text-muted);letter-spacing:0.04em;
+  }
+  .term-era b{color:var(--gold);font-weight:500;font-style:normal;margin-right:8px;
+    font-family:'Shippori Mincho',serif;font-size:0.8rem;}
+  .term-desc{font-size:0.92rem;color:var(--text-primary);line-height:1.9;}
+
+  .no-result{
+    display:none;text-align:center;color:var(--text-faint);font-size:0.9rem;padding:40px 0;
+  }
+
+  /* --- 戻る --- */
+  .series-nav{max-width:860px;margin:0 auto;padding:0 24px 100px;display:flex;justify-content:flex-end;}
+  .series-nav a{
+    font-size:0.85rem;letter-spacing:0.06em;color:var(--text-muted);
+    border:1px solid var(--gold-dim);border-radius:2px;padding:10px 20px;transition:all .3s;
+  }
+  .series-nav a:hover{color:var(--gold-bright);border-color:var(--gold);background:rgba(201,162,39,0.08);}
+
+  /* --- フッター --- */
+  footer{background:var(--bg-void);border-top:1px solid var(--line);padding:64px 24px 32px;}
+  .footer-inner{max-width:1080px;margin:0 auto;}
+  .footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;padding-bottom:40px;border-bottom:1px solid var(--line);}
+  .footer-brand .brand{margin-bottom:14px;}
+  .footer-brand p{color:var(--text-faint);font-size:0.85rem;max-width:280px;}
+  .footer-links h4{
+    font-size:0.8rem;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;
+    margin-bottom:16px;font-family:'EB Garamond',serif;font-style:italic;
+  }
+  .footer-links ul{list-style:none;}
+  .footer-links li{margin-bottom:10px;}
+  .footer-links a{color:var(--text-muted);font-size:0.88rem;transition:color .3s;}
+  .footer-links a:hover{color:var(--gold-bright);}
+  .footer-cols{display:flex;gap:64px;flex-wrap:wrap;}
+  .ai-notice{
+    margin-top:32px;padding:18px 22px;border:1px solid var(--line);border-radius:3px;
+    font-size:0.78rem;color:var(--text-faint);line-height:1.8;
+  }
+  .ai-notice strong{color:var(--gold);}
+  .copyright{margin-top:24px;text-align:center;font-size:0.78rem;color:var(--text-faint);letter-spacing:0.05em;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" class="brand"><span>群青の書</span><span class="kanji">— 世界史アーカイブ —</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="メニュー">☰</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="gallery.html" class="active">GALLERY</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<p class="breadcrumb"><a href="gallery.html">ギャラリー</a> ／ 世界史辞典</p>
+
+<div class="page-head">
+  <p class="eyebrow">Glossary</p>
+  <h1>世界史辞典<span class="en">LEXICON OF WORLD HISTORY</span></h1>
+  <p class="lead">世界史に出てくる用語を、単語名・時代・解説の三点でまとめた単語帳。</p>
+</div>
+
+<div class="search-wrap">
+  <input type="search" id="search" placeholder="単語・時代・解説から検索">
+  <p class="count" id="count"></p>
+</div>
+
+<!--
+  単語を追加する時は、下の .term ブロックを1つコピーして
+  ① .term-name(単語名) ② .term-era(時代) ③ .term-desc(解説) を書き換える。
+-->
+<main class="glossary" id="glossary">
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">ハンムラビ法典</h2>
+      <p class="term-era"><b>古代</b>前18世紀頃</p>
+    </div>
+    <p class="term-desc">古代バビロニアのハンムラビ王が制定した法典。「目には目を」で知られる同害復讐の原則を含み、被害者の身分によって刑罰が異なる点も特徴。</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">ポリス</h2>
+      <p class="term-era"><b>古代</b>前8世紀頃〜</p>
+    </div>
+    <p class="term-desc">古代ギリシアの都市国家。アテネやスパルタが代表的で、市民が政治に参加する一方、女性や奴隷は参政権を持たなかった。</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">パクス・ロマーナ</h2>
+      <p class="term-era"><b>古代</b>前27年〜後2世紀後半</p>
+    </div>
+    <p class="term-desc">「ローマの平和」を意味する言葉。初代皇帝アウグストゥスの時代から五賢帝の時代にかけて、地中海世界が長く安定した繁栄を保った時期を指す。</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">ミラノ勅令</h2>
+      <p class="term-era"><b>古代</b>313年</p>
+    </div>
+    <p class="term-desc">ローマ皇帝コンスタンティヌスとリキニウスが出した、キリスト教を含む信仰の自由を認める勅令。キリスト教が公認される転機となった。</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">十字軍</h2>
+      <p class="term-era"><b>中世</b>11世紀末〜13世紀</p>
+    </div>
+    <p class="term-desc">聖地エルサレムの奪回を掲げて西ヨーロッパのキリスト教勢力が派遣した遠征軍。1095年のクレルモン公会議での教皇ウルバヌス2世の呼びかけが発端。</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">マグナ・カルタ</h2>
+      <p class="term-era"><b>中世</b>1215年</p>
+    </div>
+    <p class="term-desc">イギリスの貴族たちがジョン王に認めさせた文書。王権に法による制限を加えたもので、のちの立憲主義の源流の一つとされる。</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">ルネサンス</h2>
+      <p class="term-era"><b>近世</b>14〜16世紀</p>
+    </div>
+    <p class="term-desc">古代ギリシア・ローマの文化を手本に人間性の尊重を打ち出した文化運動。北イタリアの都市で始まり、レオナルド・ダ・ヴィンチやミケランジェロらが活躍した。</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">宗教改革</h2>
+      <p class="term-era"><b>近世</b>1517年〜</p>
+    </div>
+    <p class="term-desc">ルターがカトリック教会の免罪符販売を批判して「九十五か条の論題」を発表したことをきっかけに、ヨーロッパに広がったキリスト教の改革運動。プロテスタントが誕生した。</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">大航海時代</h2>
+      <p class="term-era"><b>近世</b>15世紀〜17世紀</p>
+    </div>
+    <p class="term-desc">ポルトガルやスペインを先頭に、ヨーロッパ諸国が新航路や新大陸を求めて海外進出した時代。コロンブスのアメリカ到達やバスコ・ダ・ガマのインド航路開拓が代表例。</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">産業革命</h2>
+      <p class="term-era"><b>近代</b>18世紀後半〜</p>
+    </div>
+    <p class="term-desc">イギリスで始まった、機械と蒸気機関による生産技術と社会の大変革。綿工業から広がり、工場制機械工業と資本主義社会を確立させた。</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">フランス革命</h2>
+      <p class="term-era"><b>近代</b>1789年〜</p>
+    </div>
+    <p class="term-desc">1789年のバスティーユ牢獄襲撃をきっかけに、フランスで王政と身分制度が倒された革命。人権宣言を発表し、自由・平等の理念をヨーロッパ中に広めた。</p>
+  </div>
+
+  <div class="term">
+    <div class="term-head">
+      <h2 class="term-name">ヴェルサイユ条約</h2>
+      <p class="term-era"><b>現代</b>1919年</p>
+    </div>
+    <p class="term-desc">第一次世界大戦の講和条約。ドイツに巨額の賠償金や領土の削減、軍備制限が課され、国際連盟の設立も定められた。</p>
+  </div>
+
+  <p class="no-result" id="noResult">該当する単語が見つかりませんでした。</p>
+
+</main>
+
+<div class="series-nav">
+  <a href="gallery.html">ギャラリーに戻る</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="brand"><span>群青の書</span></p>
+        <p>ラピスラズリの群青と写本の金——世界史の断片を綴るアーカイブサイト。</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-links">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Azalea Creative Room</h4>
+          <ul>
+            <li><a href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Creative Room Hub</a></li>
+            <li><a href="https://www.pixiv.net/users/105728284" target="_blank" rel="noopener">Pixiv</a></li>
+            <li><a href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">Kakuyomu</a></li>
+            <li><a href="https://www.youtube.com/@LilyPopins0512" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">Bluesky</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ai-notice">
+      <strong>AI学習利用の禁止について</strong><br>
+      本サイトに掲載する文章・イラスト・画像等の著作物について、生成AIの学習データとしての使用を固く禁じます。無断でのAI学習・複製・二次利用はお控えください。
+    </div>
+    <p class="copyright">© 2026 群青の書 / Azalea Creative Room. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+  menuBtn.addEventListener('click', () => navList.classList.toggle('open'));
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+
+  // 単語検索
+  const terms = Array.from(document.querySelectorAll('.term'));
+  const search = document.getElementById('search');
+  const count = document.getElementById('count');
+  const noResult = document.getElementById('noResult');
+
+  function update() {
+    const q = search.value.trim().toLowerCase();
+    let shown = 0;
+    terms.forEach(t => {
+      const match = !q || t.textContent.toLowerCase().includes(q);
+      t.style.display = match ? '' : 'none';
+      if (match) shown++;
+    });
+    count.textContent = shown + ' 語';
+    noResult.style.display = shown === 0 ? 'block' : 'none';
+  }
+  search.addEventListener('input', update);
+  update();
+</script>
+
+</body>
+</html>
